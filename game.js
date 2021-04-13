@@ -59,12 +59,7 @@ function comChoice() {                                      //Initialize a funct
 function playerChoice() {                                   //Initialize a function to get a choice from the player and return the value to the game
 
     let choice = prompt("Please choose Rock, Paper or Scissors").toLowerCase()
-
-    //if (choice!= "rock" || choice!= "paper" || choice !="scissors") {
-      //  alert("Please choose ONLY Rock, Paper, or Scissors!")
-        //choice = prompt("Please choose Rock, Paper or Scissors").toLowerCase()
-    //}
-
+    
     return choice
 }
 
@@ -72,27 +67,27 @@ function Compare(playerMove, comMove) {                     //Initialize a funct
 
     if (playerMove=="rock" && comMove =="scissors") {
         playerScore +=1
-        alert(`You win! \n Player: ${playerScore} \n Computer: ${comScore}`)
+        console.log(`You win!`)
         
     }
     else if (playerMove=="scissors" && comMove =="paper") {
         playerScore +=1
-        alert(`You win! \n Player: ${playerScore} \n Computer: ${comScore}`)
+        console.log(`You win!`)
         
     }
 
     else if (playerMove=="paper" && comMove =="rock") {
         playerScore +=1
-        alert(`You win! \n Player: ${playerScore} \n Computer: ${comScore}`)
+        console.log(`You win!`)
         
     }
     else if(playerMove==comMove) {
-        alert(`You tied! \n Player: ${playerScore} \n Computer: ${comScore}`)
+        console.log(`You tied!`)
     }
 
     else {
         comScore+=1
-        alert(`You lost! \n Player: ${playerScore} \n Computer: ${comScore}`)
+        console.log(`You lost!`)
         
     }
    
@@ -101,41 +96,32 @@ function Compare(playerMove, comMove) {                     //Initialize a funct
 function findWinner() {                                       //Takes results from the game and determines a final winner
 
     if (comScore < playerScore) {
-        alert(`You won! \n Player: ${playerScore} \n Computer: ${comScore}`)
+        console.log(`You won! \n Player: ${playerScore} \n Computer: ${comScore}`)
     }
     
     else if (comScore>playerScore){
-        alert(`You lose this time. Try again! \n Player: ${playerScore} \n Computer: ${comScore}`)
+        console.log(`You lose this time. Try again! \n Player: ${playerScore} \n Computer: ${comScore}`)
     }
 
     else {
-        alert("A tie game! Try again!")
+        console.log("A tie game! Try again!")
     }
 
 }
 
 function replay() {                                           //Asks user if they would like to play again and restarts the game loop
     
-    
-
-   
-
     let playAgain = prompt("Would you like to play again? Y/N")
 
     if (playAgain=="Y".trim() || playAgain=="y".trim()) {
         comScore=0
         playerScore=0
         play=true
-        i=false
+        
     }
     else if(playAgain=="N".trim() || playAgain=="n".trim()) {
         alert("Thanks for playing!")
         play=false
         
     }
-    else {
-        alert("Please make a proper selection!")
-        
-    }
-
 }

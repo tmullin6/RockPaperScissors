@@ -39,3 +39,11 @@ body {
     position: absolute;
     right: -1000px;
 }
+
+.rock {
+
+    /*background-image: url("Rock.png");*/
+    height: 30px;
+    width: 30px;
+   
+}

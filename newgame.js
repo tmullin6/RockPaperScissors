@@ -10,6 +10,8 @@ const scissors = document.querySelector("#scissors");
 const pScore = document.querySelector("#playerscore");
 const cScore = document.querySelector("#comscore");
 
+const winner = document.createElement("p");
+
 let comScore = 0        //Initialize Computer score to zero
 let playerScore = 0     //Initialize Player score to zero
 let playerMove;
@@ -26,6 +28,7 @@ rock.addEventListener("click", () => {
     }
     else {
        endGame();
+       replay();
     }
 });
 
@@ -37,6 +40,7 @@ paper.addEventListener("click", () => {
     }
     else {
        endGame();
+       replay();
     }
 });
 
@@ -48,47 +52,26 @@ scissors.addEventListener("click", () => {
     }
     else {
        endGame();
+       replay();
     }
 });
 
 
 
 
+
+function replay() {
+    const quit = document.createElement("button");
     
+    quit.textContent="Exit";
+    gamearea.appendChild(quit);
 
-    
+   
 
-
- 
-
-
-        
-//if (round > 5) {
-  //  const playAgain = document.createElement("div");
-   // const replay = document.createElement('p');
-    //const y = document.createElement('button');
-   // const n = document.createElement('button');
-   // replay.textContent="Would you like to play again?";
-   // y.textContent="Yes";
-   // n.textContent="No";
-    
-  // gamearea.appendChild(playAgain);
-    
-  //  playAgain.appendChild(replay);
-   // playAgain.appendChild(y);
-   // playAgain.appendChild(n);
-
-//}
-
-
-
-
-
-
-
-
-
-
+    quit.addEventListener("click", () => {
+        window.location.reload(false);
+    });
+}
 
 
 
@@ -118,10 +101,6 @@ function playGame(move) {
     playerMove=move;
     comMove=comChoice();
     compare(playerMove,comMove);
-    console.log(playerMove)
-    console.log(comMove)
-    console.log(playerScore)
-    console.log(comScore)
     round +=1;
     roundNum.textContent="Round: " + round;
 
@@ -151,46 +130,54 @@ function comChoice() {                                      //Initialize a funct
     
 function compare(playerMove, comMove) {                     //Initialize a function that compares the player's and computer's and updates score variable for winner
     
+
         if (playerMove=="rock" && comMove =="scissors") {
             playerScore +=1
-            
+            winner.setAttribute("style", "color: green; font-size:30px");
+            winner.textContent="You win this round!";
         }
         else if (playerMove=="scissors" && comMove =="paper") {
             playerScore +=1
-            
+            winner.setAttribute("style", "color: green; font-size:30px");
+            winner.textContent="You win this round!";
         }
     
         else if (playerMove=="paper" && comMove =="rock") {
             playerScore +=1
-            
+            winner.setAttribute("style", "color: green; font-size:30px");
+            winner.textContent="You win this round!";
         }
         else if(playerMove==comMove) {
-            
+            winner.setAttribute("style", "color: black; font-size:30px");
+            winner.textContent="Oh no! A tied round.. Try again";
+            round-=1;
         }
     
         else {
             comScore+=1
+            winner.setAttribute("style", "color: red; font-size:30px");
+            winner.textContent="You lost this round!";
          
         }
-       
+       gamearea.insertBefore(winner,roundNum);
     }
     
 function findWinner() {                                       //Takes results from the game and determines a final winner
         let winner=''
         if (comScore < playerScore) {
-            winner = 'You win!'
+            winner = 'You win!  Final Score: '
             desc.setAttribute('style', 'color: green; font-size: 24px')
             return winner;
         }
         
         else if (comScore>playerScore){
-            winner ='You lost this time. Try Again!';
+            winner ='You lost this time. Try Again!  Final Score: ';
             desc.setAttribute('style','color: red; font-size: 24px;')
             return winner;
         }
     
         else {
-            winner='A tie game! Try again!'
+            winner='A tie game! Try again!  Final Score: '
             desc.setAttribute('style','color: black; font-size: 24px;')
             return winner
         }
@@ -203,6 +190,7 @@ function endGame() {
         moves.removeChild(rock);
         moves.removeChild(paper);
         moves.removeChild(scissors);
+        gamearea.removeChild(winner);
         desc.textContent=findWinner();
 
 }

@@ -60,18 +60,6 @@ scissors.addEventListener("click", () => {
 
 
 
-function replay() {
-    const quit = document.createElement("button");
-    
-    quit.textContent="Exit";
-    gamearea.appendChild(quit);
-
-   
-
-    quit.addEventListener("click", () => {
-        window.location.reload(false);
-    });
-}
 
 
 
@@ -193,3 +181,17 @@ function endGame() {
         desc.textContent=findWinner();
 
 }
+
+function replay() {
+    const quit = document.createElement("button");
+    
+    quit.textContent="Play Again?";
+    gamearea.appendChild(quit);
+
+   
+
+    quit.addEventListener("click", () => {
+        window.location.reload(false);
+    });
+}
+

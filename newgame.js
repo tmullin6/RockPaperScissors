@@ -21,39 +21,39 @@ let round= 1;
 startGame();
 
 rock.addEventListener("click", () => {
-    if (round < 5) {
+
     playGame('rock');
     pScore.textContent="Player: " + playerScore;
     cScore.textContent= "Computer: " + comScore;
-    }
-    else {
+    
+    if (playerScore == 5 || comScore ==5) {
        endGame();
        replay();
     }
 });
 
 paper.addEventListener("click", () => {
-    if (round < 5) {
+
     playGame('paper');
     pScore.textContent="Player: " + playerScore;
     cScore.textContent= "Computer: " + comScore;
-    }
-    else {
-       endGame();
-       replay();
-    }
+    if (playerScore == 5 || comScore ==5) {
+        endGame();
+        replay();
+     }
 });
 
 scissors.addEventListener("click", () => {
-    if (round < 5) {
+
     playGame('scissors');
     pScore.textContent="Player: " + playerScore;
     cScore.textContent= "Computer: " + comScore;
-    }
-    else {
-       endGame();
-       replay();
-    }
+    
+    if (playerScore == 5 || comScore ==5) {
+        endGame();
+        replay();
+     }
+    
 });
 
 
@@ -150,7 +150,6 @@ function compare(playerMove, comMove) {                     //Initialize a funct
         else if(playerMove==comMove) {
             winner.setAttribute("style", "color: black; font-size:30px");
             winner.textContent="Oh no! A tied round.. Try again";
-            round-=1;
         }
     
         else {
@@ -194,4 +193,3 @@ function endGame() {
         desc.textContent=findWinner();
 
 }
-    
